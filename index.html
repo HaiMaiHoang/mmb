@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hồ Cá Heo và MMB</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background-color: #87CEEB;
+    }
+    .dolphin {
+      position: absolute;
+      font-size: 50px;
+      opacity: 0;
+      animation: jump 2s ease-in-out;
+    }
+    .mmb {
+      position: absolute;
+      font-size: 70px;
+      opacity: 0;
+      animation: jumpHigher 2s ease-in-out;
+    }
+    @keyframes jump {
+      0% { transform: translateY(100vh); opacity: 1; }
+      50% { transform: translateY(30vh); }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+    @keyframes jumpHigher {
+      0% { transform: translateY(100vh); opacity: 1; }
+      50% { transform: translateY(14vh); }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body onclick="showJumpers()">
+  <h1>Click vào màn hình !!! </h1>
+  <script>
+    function createJumper(icon, leftPosition) {
+      const jumper = document.createElement('div');
+      jumper.className = icon === '🐬' ? 'dolphin' : 'mmb';
+      jumper.textContent = icon;
+      jumper.style.left = leftPosition + 'px';
+      document.body.appendChild(jumper);
+      setTimeout(() => jumper.remove(), 2000);
+    }
+
+    function showJumpers() {
+      const screenWidth = window.innerWidth;
+      for (let i = 0; i < 3; i++) {
+        const randomX = Math.random() * (screenWidth - 50);
+        createJumper('🐬', randomX);
+      }
+      const mmbX = 250;
+      createJumper('mmb', mmbX);
+    }
+  </script>
+</body>
+</html>
